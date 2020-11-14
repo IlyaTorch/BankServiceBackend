@@ -20,3 +20,11 @@ def account_info(request, account_id):
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
+
+def transactions_list(request, account_id):
+    transactions_json = service.get_transactions_json(account_id)
+
+    response = HttpResponse(transactions_json, content_type='application/json')
+    response['Access-Control-Allow-Origin'] = '*'
+    return response
+

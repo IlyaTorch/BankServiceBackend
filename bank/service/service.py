@@ -18,3 +18,8 @@ class Service:
         account_info = self.db.get_account(account_id)
         account_json = self.parser.parse_account_item_info_to_json(account_info)
         return account_json
+
+    def get_transactions_json(self, account_id):
+        transactions_info = self.db.get_transactions(account_id)
+        transactions_json = self.parser.parse_transactions_info_to_json(transactions_info)
+        return transactions_json

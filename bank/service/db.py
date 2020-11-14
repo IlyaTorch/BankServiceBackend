@@ -22,4 +22,12 @@ class DB:
         cursor = self.db.cursor()
         cursor.execute(f"SELECT * FROM BANK_ACCOUNT WHERE ACCOUNT_ID = {account_id}")
         db_response = cursor.fetchall()
+
+        return db_response
+
+    def get_transactions(self, account_id: int):
+        cursor = self.db.cursor()
+        cursor.execute(f"SELECT * FROM TRANSACTION WHERE ACCOUNT_ID = {account_id}")
+        db_response = cursor.fetchall()
+
         return db_response
