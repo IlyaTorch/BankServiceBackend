@@ -32,25 +32,15 @@ class DB:
 
         return db_response
 
-    def put_money(self, account_id: int, sum: int):
+    def work_with_money(self, account_id: int, operation_sum: int, operation_type='withdraw'):
+        if operation_type == 'withdraw':
+            operation_sum = -operation_sum
         cursor = self.db.cursor()
-        cursor.execute(f"UPDATE BANK_ACCOUNT SET `SUM` = `SUM` + {sum} WHERE ACCOUNT_ID = {account_id}")
+        cursor.execute(f"UPDATE BANK_ACCOUNT SET `SUM` = `SUM` + {operation_sum} WHERE ACCOUNT_ID = {account_id}")
         self.db.commit()
         print(cursor.rowcount, "record(s) affected")
 
         cursor = self.db.cursor()
-        cursor.execute(f"INSERT INTO TRANSACTION (ACCOUNT_ID, SUM) VALUES ({account_id}, {sum})")
+        cursor.execute(f"INSERT INTO TRANSACTION (ACCOUNT_ID, SUM) VALUES ({account_id}, {operation_sum})")
         self.db.commit()
         print(cursor.rowcount, "record inserted.")
-
-    def withdraw_money(self, account_id: int, sum: int):
-        cursor = self.db.cursor()
-        cursor.execute(f"UPDATE BANK_ACCOUNT SET `SUM` = `SUM` - {sum} WHERE ACCOUNT_ID = {account_id}")
-        self.db.commit()
-        print(cursor.rowcount, "record(s) affected")
-
-        cursor = self.db.cursor()
-        cursor.execute(f"INSERT INTO TRANSACTION (ACCOUNT_ID, SUM) VALUES ({account_id}, {-sum})")
-        self.db.commit()
-        print(cursor.rowcount, "record inserted.")
-

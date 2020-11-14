@@ -31,7 +31,7 @@ def transactions_list(request, account_id):
 
 @csrf_exempt
 def put_money(request):
-    service.put_money(request.body)
+    service.work_with_money(request.body, 'put')
 
     response = HttpResponse({}, content_type='application/json')
     response['Access-Control-Allow-Origin'] = '*'
@@ -40,7 +40,7 @@ def put_money(request):
 
 @csrf_exempt
 def withdraw_money(request):
-    service.withdraw_money(request.body)
+    service.work_with_money(request.body, 'withdraw')
 
     response = HttpResponse({}, content_type='application/json')
     response['Access-Control-Allow-Origin'] = '*'
