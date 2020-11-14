@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from .views import redirect_bank
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bank/', include('bank.urls'))
+    path('bank/', include('bank.urls')),
+    path('', redirect_bank)
 ]

@@ -36,3 +36,12 @@ def put_money(request):
     response = HttpResponse({}, content_type='application/json')
     response['Access-Control-Allow-Origin'] = '*'
     return response
+
+
+@csrf_exempt
+def withdraw_money(request):
+    service.withdraw_money(request.body)
+
+    response = HttpResponse({}, content_type='application/json')
+    response['Access-Control-Allow-Origin'] = '*'
+    return response

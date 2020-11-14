@@ -28,3 +28,7 @@ class Service:
         put_money_dict = Parser.parse_json_to_dict(json)
         self.db.put_money(put_money_dict['accountId'], put_money_dict['sum'])
 
+    def withdraw_money(self, json):
+        withdraw_money_dict = Parser.parse_json_to_dict(json)
+        self.db.withdraw_money(withdraw_money_dict['accountId'], withdraw_money_dict['sum'])
+

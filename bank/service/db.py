@@ -43,3 +43,14 @@ class DB:
         self.db.commit()
         print(cursor.rowcount, "record inserted.")
 
+    def withdraw_money(self, account_id: int, sum: int):
+        cursor = self.db.cursor()
+        cursor.execute(f"UPDATE BANK_ACCOUNT SET `SUM` = `SUM` - {sum} WHERE ACCOUNT_ID = {account_id}")
+        self.db.commit()
+        print(cursor.rowcount, "record(s) affected")
+
+        cursor = self.db.cursor()
+        cursor.execute(f"INSERT INTO TRANSACTION (ACCOUNT_ID, SUM) VALUES ({account_id}, {-sum})")
+        self.db.commit()
+        print(cursor.rowcount, "record inserted.")
+
