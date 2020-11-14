@@ -11,7 +11,7 @@ class Service:
 
     def get_accounts_json(self):
         accounts_info = self.db.get_accounts()
-        accounts_json = self.parser.parse_accounts_info_to_json(accounts_info)
+        accounts_json = self.parser.parse_list_info_to_json(accounts_info, entity_type='account')
         return accounts_json
 
     def get_account_info_json(self, account_id):
@@ -21,5 +21,5 @@ class Service:
 
     def get_transactions_json(self, account_id):
         transactions_info = self.db.get_transactions(account_id)
-        transactions_json = self.parser.parse_transactions_info_to_json(transactions_info)
+        transactions_json = self.parser.parse_list_info_to_json(transactions_info, entity_type='transaction')
         return transactions_json
