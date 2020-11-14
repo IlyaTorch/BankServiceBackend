@@ -23,3 +23,8 @@ class Service:
         transactions_info = self.db.get_transactions(account_id)
         transactions_json = self.parser.parse_list_info_to_json(transactions_info, entity_type='transaction')
         return transactions_json
+
+    def put_money(self, json):
+        put_money_dict = Parser.parse_json_to_dict(json)
+        self.db.put_money(put_money_dict['accountId'], put_money_dict['sum'])
+

@@ -6,6 +6,10 @@ class Parser:
     KEYS_FOR_ACCOUNTS_JSON = ["accountId", "opened", "sum"]
     KEYS_FOR_TRANSACTIONS_JSON = ["transactionId", "accountId", "sum"]
 
+    @classmethod
+    def parse_json_to_dict(cls, json_info):
+        return json.loads(json_info.decode())
+
     def parse_list_info_to_json(self, entities_list:List[Tuple[int, int, int]], entity_type: str) -> json:
         entities = []
         for entity_row in entities_list:

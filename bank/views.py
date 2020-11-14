@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from .service.service import Service
-
+from django.views.decorators.csrf import csrf_exempt
 
 service = Service()
 
@@ -28,3 +28,11 @@ def transactions_list(request, account_id):
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
+
+@csrf_exempt
+def put_money(request):
+    service.put_money(request.body)
+
+    response = HttpResponse({}, content_type='application/json')
+    response['Access-Control-Allow-Origin'] = '*'
+    return response
