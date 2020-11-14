@@ -44,3 +44,14 @@ class DB:
         cursor.execute(f"INSERT INTO TRANSACTION (ACCOUNT_ID, SUM) VALUES ({account_id}, {operation_sum})")
         self.db.commit()
         print(cursor.rowcount, "record inserted.")
+
+    def close_account(self, account_id: int):
+        cursor = self.db.cursor()
+        cursor.execute(f"DELETE FROM BANK_ACCOUNT WHERE ACCOUNT_ID = {account_id}")
+        self.db.commit()
+        print(cursor.rowcount, "record(s) deleted from BANK_ACCOUNT")
+
+        cursor = self.db.cursor()
+        cursor.execute(f"DELETE FROM TRANSACTION WHERE ACCOUNT_ID = {account_id}")
+        self.db.commit()
+        print(cursor.rowcount, "record(s) deleted from TRANSACTION")

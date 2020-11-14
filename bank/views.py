@@ -45,3 +45,12 @@ def withdraw_money(request):
     response = HttpResponse({}, content_type='application/json')
     response['Access-Control-Allow-Origin'] = '*'
     return response
+
+
+@csrf_exempt
+def close_account(request):
+    service.close_account(request.body)
+
+    response = HttpResponse({}, content_type='application/json')
+    response['Access-Control-Allow-Origin'] = '*'
+    return response

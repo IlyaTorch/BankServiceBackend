@@ -7,4 +7,5 @@ urlpatterns = [
     path('transactions/<str:account_id>', transactions_list),
     path('put-money/', put_money),
     path('withdraw-money/', withdraw_money),
+    path('close-account/', close_account),
 ]

@@ -29,3 +29,7 @@ class Service:
         if money_operation_dict['sum'] < 0:
             raise ValueError('Sum of money must be more than 0!')
         self.db.work_with_money(money_operation_dict['accountId'], money_operation_dict['sum'], operation_type)
+
+    def close_account(self, json):
+        account_dict = Parser.parse_json_to_dict(json)
+        self.db.close_account(account_dict['accountId'])
