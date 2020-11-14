@@ -54,3 +54,12 @@ def close_account(request):
     response = HttpResponse({}, content_type='application/json')
     response['Access-Control-Allow-Origin'] = '*'
     return response
+
+
+@csrf_exempt
+def create_account(request):
+    service.create_account()
+
+    response = HttpResponse({}, content_type='application/json')
+    response['Access-Control-Allow-Origin'] = '*'
+    return response

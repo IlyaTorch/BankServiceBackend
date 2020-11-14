@@ -55,3 +55,9 @@ class DB:
         cursor.execute(f"DELETE FROM TRANSACTION WHERE ACCOUNT_ID = {account_id}")
         self.db.commit()
         print(cursor.rowcount, "record(s) deleted from TRANSACTION")
+
+    def create_account(self, opened=1, account_sum=10):
+        cursor = self.db.cursor()
+        cursor.execute(f"INSERT INTO BANK_ACCOUNT (OPENED, SUM) VALUES ({opened}, {account_sum})")
+        self.db.commit()
+        print(cursor.rowcount, "record inserted.")

@@ -33,3 +33,6 @@ class Service:
     def close_account(self, json):
         account_dict = Parser.parse_json_to_dict(json)
         self.db.close_account(account_dict['accountId'])
+
+    def create_account(self):
+        self.db.create_account()

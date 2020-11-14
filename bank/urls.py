@@ -8,4 +8,5 @@ urlpatterns = [
     path('put-money/', put_money),
     path('withdraw-money/', withdraw_money),
     path('close-account/', close_account),
+    path('create-account/', create_account),
 ]
